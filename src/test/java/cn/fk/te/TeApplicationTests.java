@@ -15,7 +15,7 @@ public class TeApplicationTests {
 	UserMapper userMapper;
 
 	@Test
-	public void contextLoads() {
+	public void test123() {
 		System.out.println(userMapper.selectByPrimaryKey(16).toString());
 	}
 
