@@ -6,4 +6,6 @@ public interface UserMapper {
 
     User selectByPrimaryKey(Integer id);
 
+    int insert(User user);
+
 }

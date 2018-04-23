@@ -18,6 +18,14 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-
+  <insert id="insert" parameterType="cn.fk.te.entity.User">
+    INSERT INTO user VALUE(
+    #{id,jdbcType=INTEGER},
+    #{username,jdbcType=VARCHAR},
+    #{birthday,jdbcType=TIMESTAMP},
+    #{sex,jdbcType=VARCHAR},
+    #{address,jdbcType=VARCHAR}
+    )
+  </insert>
 
 </mapper>
