@@ -1,9 +1,7 @@
 package cn.fk.te;
 
-import cn.fk.te.entity.User;
-import cn.fk.te.mapper.UserMapper;
 import cn.fk.te.service.UserService;
-import cn.fk.te.service.impl.UserServiceImpl;
+import cn.fk.te.thread.Thread1;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +17,16 @@ public class TeApplicationTests {
 	UserService userService;
 
 	@Test
-//	@Transactional
-	public void test123() {
-//		System.out.println(userMapper.selectByPrimaryKey(16).toString());
-
-		User user = new User();
-		user.setUsername("qqq");
-		userService.insert(user);
-		Integer aa=4/0;
-//		System.out.println(aa);
-		userService.insert(user);
+	@Transactional
+	public void test123() throws InterruptedException {
+		System.out.println(Thread.currentThread().getName()+"主线程运行开始!");
+		Thread1 mTh1=new Thread1("A");
+		Thread1 mTh2=new Thread1("B");
+		mTh1.start();
+		mTh2.start();
+		mTh1.join();
+		mTh2.join();
+		System.out.println(Thread.currentThread().getName()+ "主线程运行结束!");
 	}
 
 }

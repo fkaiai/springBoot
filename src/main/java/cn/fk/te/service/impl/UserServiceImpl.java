@@ -14,8 +14,8 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    @Transactional
-    public Integer insert(User user) {
+//    @Transactional
+    public int insert(User user) {
         return userMapper.insert(user);
     }
 }

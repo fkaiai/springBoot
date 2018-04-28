@@ -4,5 +4,5 @@ import cn.fk.te.entity.User;
 
 public interface UserService {
 
-    Integer insert(User user);
+    int insert(User user);
 }
