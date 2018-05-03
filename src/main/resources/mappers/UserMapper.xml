@@ -8,15 +8,6 @@
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="address" jdbcType="VARCHAR" property="address" />
   </resultMap>
-  <sql id="Base_Column_List">
-    id, username, birthday, sex, address
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
 
   <insert id="insert" parameterType="cn.fk.te.entity.User">
     INSERT INTO user VALUE(
@@ -27,5 +18,9 @@
     #{address,jdbcType=VARCHAR}
     )
   </insert>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from user
+  </select>
 
 </mapper>

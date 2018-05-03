@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/ff?characterEncoding=utf-8
     username: root
     password: root
 
@@ -20,4 +20,3 @@ mybatis:
   typeAliasesPackage: cn.fk.te.entity
   mapperLocations: classpath:mappers/*.xml
 
-#  https://www.cnblogs.com/xingzc/p/6029483.html事务
