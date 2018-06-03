@@ -1,9 +1,10 @@
 package cn.fk.te.utils.http;
 
 
+import cn.fk.te.utils.JsonUtil;
+import cn.fk.te.utils.Pair;
+import static cn.fk.te.utils.Variable.*;
 import com.alibaba.fastjson.JSONObject;
-import com.bqjr.cw.utils.JsonUtil;
-import com.bqjr.cw.utils.Pair;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -15,9 +16,9 @@ import java.net.*;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.util.HashMap;
 import java.util.Map;
 
-import static com.bqjr.cw.utils.Variable.*;
 import static java.lang.String.format;
 
 /**
@@ -194,6 +195,10 @@ public class HttpUtil {
      */
     public  static Pair<Integer, String> get(String url, Map<String, Object> params)  {
         return getOrPut(url, Method.GET, params, null);
+    }
+
+    public  static Pair<Integer, String> getHeader(String url, Map<String, Object> params,Map<String,String> cookies)  {
+        return getOrPut(url, Method.GET, params, cookies);
     }
 
     public static JSONObject httpRequest(String requestUrl, String requestMethod, String outputStr) {
@@ -378,6 +383,16 @@ public class HttpUtil {
                 out.flush();
                 out.close();
             }
+
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("aa","bb");
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                con.setRequestProperty(entry.getKey(), entry.getValue());
+
+
+            }
+
+
             InputStream in = con.getInputStream();
             if (in==null) {
                 in = con.getErrorStream();

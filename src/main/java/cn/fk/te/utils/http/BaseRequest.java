@@ -1,8 +1,8 @@
 package cn.fk.te.utils.http;
 
-import com.bqjr.cw.utils.DateUtil;
-import com.bqjr.cw.utils.JsonUtil;
-import com.bqjr.cw.utils.Pair;
+import cn.fk.te.utils.DateUtil;
+import cn.fk.te.utils.JsonUtil;
+import cn.fk.te.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

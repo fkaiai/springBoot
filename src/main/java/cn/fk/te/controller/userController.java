@@ -4,7 +4,9 @@ import cn.fk.te.entity.User;
 import cn.fk.te.service.UserService;
 import cn.fk.te.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +28,10 @@ public class userController {
         Integer aa=4/0;
         userService.insert(user);
         return "success";
+    }
+
+    @RequestMapping(value = "/testt",method = RequestMethod.GET)
+    public String testt(@RequestHeader HttpHeaders headers){
+        return "testt";
     }
 }
