@@ -16,7 +16,6 @@ import java.net.*;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
-import java.util.HashMap;
 import java.util.Map;
 
 import static java.lang.String.format;
@@ -58,7 +57,7 @@ public class HttpUtil {
      * @return
      */
     public  static Pair<Integer, String> get_(String uri , Map<String,String> cookies)  {
-        return httpMethod(uri, Method.GET, null, RequestProperty.URLENCODED,cookies,false);
+        return httpMethod(uri, Method.GET, null, RequestProperty.URLENCODED,cookies,false,null);
     }
 
     /**
@@ -72,7 +71,7 @@ public class HttpUtil {
 
         queryString = queryString==null?"":queryString;
 
-        return httpMethod(url, Method.POST, queryString.getBytes(CHARSET), RequestProperty.URLENCODED,cookies,false);
+        return httpMethod(url, Method.POST, queryString.getBytes(CHARSET), RequestProperty.URLENCODED,cookies,false,null);
     }
 
     /**
@@ -83,7 +82,7 @@ public class HttpUtil {
      * @throws IOException
      */
     public static Pair<Integer,String> postXml(String url,String xml,Map<String,String> cookies)  {
-        return httpMethod(url, Method.POST,xml.getBytes(CHARSET), RequestProperty.XML,cookies,false);
+        return httpMethod(url, Method.POST,xml.getBytes(CHARSET), RequestProperty.XML,cookies,false,null);
     }
     /**
      *
@@ -93,7 +92,7 @@ public class HttpUtil {
      * @throws IOException
      */
     public static Pair<Integer,String> postJson(String url,String json,Map<String,String> cookies) {
-        return httpMethod(url, Method.POST,json.getBytes(CHARSET), RequestProperty.JSON,cookies,false);
+        return httpMethod(url, Method.POST,json.getBytes(CHARSET), RequestProperty.JSON,cookies,false,null);
     }
 
     /**
@@ -103,7 +102,7 @@ public class HttpUtil {
      * @return
      */
     public  static Pair<Integer, String> get(String url, Map<String, Object> params,Map<String,String> cookies)  {
-        return getOrPut(url, Method.GET, params, cookies);
+        return getOrPut(url, Method.GET, params, cookies,null);
     }
     public static  <T> T  get(String url, Map<String, Object> params,TypeReference<T> tr) {
         Pair<Integer,String> pair=  get(url,params);
@@ -117,14 +116,14 @@ public class HttpUtil {
      * @return
      */
     public  static Pair<Integer, String> put(String url, Map<String, Object> params,Map<String,String> cookies) {
-        return getOrPut(url, Method.PUT, params,cookies);
+        return getOrPut(url, Method.PUT, params,cookies,null);
     }
 
-    private  static Pair<Integer, String> getOrPut(String url,Method method,Map<String,Object> params,Map<String,String> cookies)  {
+    private  static Pair<Integer, String> getOrPut(String url,Method method,Map<String,Object> params,Map<String,String> cookies,Map<String,String> headerMpas)  {
         if(params!=null&&params.size()!=0){
             url = format("%s?%s", url, getQueryString(params));
         }
-        return httpMethod(url, method, null, RequestProperty.URLENCODED, cookies,false);
+        return httpMethod(url, method, null, RequestProperty.URLENCODED, cookies,false,headerMpas);
     }
 
 
@@ -134,7 +133,7 @@ public class HttpUtil {
      * @return
      */
     public  static Pair<Integer, String> get(String uri )  {
-        return httpMethod(uri, Method.GET, null, RequestProperty.URLENCODED,null,false);
+        return httpMethod(uri, Method.GET, null, RequestProperty.URLENCODED,null,false,null);
     }
 
     /**
@@ -146,7 +145,7 @@ public class HttpUtil {
     public  static Pair<Integer, String> post(String url, Map<String, Object> params)  {
         String queryString = getQueryString(params);
         queryString = queryString==null?"":queryString;
-        return httpMethod(url, Method.POST, queryString.getBytes(CHARSET), RequestProperty.URLENCODED,null,false);
+        return httpMethod(url, Method.POST, queryString.getBytes(CHARSET), RequestProperty.URLENCODED,null,false,null);
     }
     public static  <T> T  post(String url, Map<String, Object> params,TypeReference<T> tr) {
         Pair<Integer,String> pair=  post(url,params);
@@ -161,10 +160,10 @@ public class HttpUtil {
      * @throws IOException
      */
     public static Pair<Integer,String> postXml(String url, String xml)  {
-        return httpMethod(url, Method.POST,xml.getBytes(CHARSET), RequestProperty.XML,null,false);
+        return httpMethod(url, Method.POST,xml.getBytes(CHARSET), RequestProperty.XML,null,false,null);
     }
     public static Pair<Integer,String> postSOAPXml(String url,String xml)  {
-        return httpMethod(url, Method.POST,xml.getBytes(CHARSET), RequestProperty.SOAPXML,null,false);
+        return httpMethod(url, Method.POST,xml.getBytes(CHARSET), RequestProperty.SOAPXML,null,false,null);
     }
     /**
      *
@@ -174,7 +173,7 @@ public class HttpUtil {
      * @throws IOException
      */
     public static Pair<Integer,String> postJson(String url,String json)  {
-        return httpMethod(url, Method.POST,json.getBytes(CHARSET), RequestProperty.JSON,null,false);
+        return httpMethod(url, Method.POST,json.getBytes(CHARSET), RequestProperty.JSON,null,false,null);
     }
 
 
@@ -184,7 +183,7 @@ public class HttpUtil {
      * @return
      */
     public  static Pair<Integer, String> put(String uri) {
-        return httpMethod(uri, Method.PUT,null, RequestProperty.URLENCODED,null,false);
+        return httpMethod(uri, Method.PUT,null, RequestProperty.URLENCODED,null,false,null);
     }
 
     /**
@@ -194,12 +193,33 @@ public class HttpUtil {
      * @return
      */
     public  static Pair<Integer, String> get(String url, Map<String, Object> params)  {
-        return getOrPut(url, Method.GET, params, null);
+        return getOrPut(url, Method.GET, params, null,null);
     }
 
-    public  static Pair<Integer, String> getHeader(String url, Map<String, Object> params,Map<String,String> cookies)  {
-        return getOrPut(url, Method.GET, params, cookies);
+
+    /**
+     * http Get header
+     */
+    public  static Pair<Integer, String> getHeader(String uri ,Map<String, Object> params,Map<String, String> headersMap)  {
+        return getOrPut(uri, Method.GET, params, null,headersMap);
     }
+
+    /**
+     * http Post header
+     */
+    public  static Pair<Integer, String> postHeader(String url, Map<String, Object> params,Map<String, String> headersMap)  {
+        String queryString = getQueryString(params);
+        queryString = queryString==null?"":queryString;
+        return httpMethod(url, Method.POST, queryString.getBytes(CHARSET), RequestProperty.URLENCODED,null,false,headersMap);
+    }
+
+    /**
+     * http Post Json header
+     */
+    public static Pair<Integer,String> postJsonHeader(String url,String json,Map<String, String> headersMap)  {
+        return httpMethod(url, Method.POST,json.getBytes(CHARSET), RequestProperty.JSON,null,false,headersMap);
+    }
+
 
     public static JSONObject httpRequest(String requestUrl, String requestMethod, String outputStr) {
         JSONObject jsonObject = null;
@@ -265,10 +285,10 @@ public class HttpUtil {
      * @return
      */
     public  static Pair<Integer, String> put(String url, Map<String, Object> params) {
-        return getOrPut(url, Method.PUT, params,null);
+        return getOrPut(url, Method.PUT, params,null,null);
     }
     private  static Pair<Integer, String> getOrPut(String url,Method method,Map<String,Object> params)  {
-        return httpMethod(format("%s?%s", url, getQueryString(params)), method, null, RequestProperty.URLENCODED, null,false);
+        return httpMethod(format("%s?%s", url, getQueryString(params)), method, null, RequestProperty.URLENCODED, null,false,null);
     }
 
 
@@ -347,7 +367,7 @@ public class HttpUtil {
             throw new RuntimeException("http请求出错",e);
         }
         byte[] postData=bos.toByteArray();
-        return  httpMethod(uri, Method.POST,postData, RequestProperty.FILE,null,false);
+        return  httpMethod(uri, Method.POST,postData, RequestProperty.FILE,null,false,null);
 
     }
     private static void toBytes(ByteArrayOutputStream bos, StringBuilder sb) throws IOException {
@@ -355,10 +375,10 @@ public class HttpUtil {
         sb.delete(0,sb.length());
     }
     public static byte[] download(String uri){
-        return (byte[]) httpMethod(uri, Method.GET,null, RequestProperty.URLENCODED,null,true).value;
+        return (byte[]) httpMethod(uri, Method.GET,null, RequestProperty.URLENCODED,null,true,null).value;
     }
     private static final int BUFFER_SIZE=64;
-    public static Pair httpMethod(String uri,Method method,byte[] postData, RequestProperty requestProperty,Map<String,String> cookies,boolean isByte) {
+    public static Pair httpMethod(String uri,Method method,byte[] postData, RequestProperty requestProperty,Map<String,String> cookies,boolean isByte,Map<String,String> headerMaps) {
 //        if(postData!=null&&postData.length<2000){
 //            logger.info("http {}->uri:\n{}?{}",method,uri,new String(postData,CHARSET));
 //        }else{
@@ -377,21 +397,26 @@ public class HttpUtil {
                         +";charset="+CHARSET_STR
                 );
                 con.setRequestProperty("Content-length", String.valueOf(postData.length));
+                //POST设置header
+                if(headerMaps!=null){
+                    for (Map.Entry<String, String> entry : headerMaps.entrySet()) {
+                        con.setRequestProperty(entry.getKey(), entry.getValue());
+                    }
+                }
                 out=con.getOutputStream();
-
                 out.write(postData);
                 out.flush();
                 out.close();
             }
 
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("aa","bb");
-            for (Map.Entry<String, String> entry : map.entrySet()) {
-                con.setRequestProperty(entry.getKey(), entry.getValue());
-
-
+            if(Method.GET.equals(method)){
+                //GET设置header
+                if(headerMaps!=null){
+                    for (Map.Entry<String, String> entry : headerMaps.entrySet()) {
+                        con.setRequestProperty(entry.getKey(), entry.getValue());
+                    }
+                }
             }
-
 
             InputStream in = con.getInputStream();
             if (in==null) {
@@ -420,6 +445,8 @@ public class HttpUtil {
 //                logger.info(JsonUtil.toJson(pair));
                 return pair;
             }
+
+
         }catch (IOException e){
             throw new RuntimeException("http请求出错",e);
 

@@ -20,3 +20,12 @@ mybatis:
   typeAliasesPackage: cn.fk.te.entity
   mapperLocations: classpath:mappers/*.xml
 
+
+#当当定时任务
+regCenter:
+  serverList: localhost:2181
+  namespace: elastic-job-lite-springboot
+stockJob:
+  cron: 0/5 * * * * ?
+  shardingTotalCount: 2
+  shardingItemParameters: 0=Chengdu0,1=Chengdu1

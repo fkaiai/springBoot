@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 @RestController
 @RequestMapping("/user")
 public class userController {
@@ -19,7 +22,6 @@ public class userController {
     UserServiceImpl userService;
 
     @RequestMapping(value = "/insertUser",method = RequestMethod.GET)
-    //@Transactional
     public String insertUser(){
 
         User user=new User();
@@ -32,6 +34,15 @@ public class userController {
 
     @RequestMapping(value = "/testt",method = RequestMethod.GET)
     public String testt(@RequestHeader HttpHeaders headers){
+
+        Timer timer=new Timer();//实例化Timer类
+        timer.schedule(new TimerTask(){
+            public void run(){
+                System.out.println("退出");
+//                this.cancel();
+            }
+        },4000);//五百毫秒
+
         return "testt";
     }
 }
