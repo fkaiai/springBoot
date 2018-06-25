@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ff?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/ff?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
 
@@ -22,10 +22,19 @@ mybatis:
 
 
 #当当定时任务
-regCenter:
-  serverList: localhost:2181
-  namespace: elastic-job-lite-springboot
-stockJob:
-  cron: 0/5 * * * * ?
-  shardingTotalCount: 2
-  shardingItemParameters: 0=Chengdu0,1=Chengdu1
+#regCenter:
+#  serverList: localhost:2181
+#  namespace: elastic-job-lite-springboot
+#stockJob:
+#  cron: 0/5 * * * * ?
+#  shardingTotalCount: 2
+#  shardingItemParameters: 0=Chengdu0,1=Chengdu1
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    cn.fk: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36}:%L - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file: d:/logs/mylog.log

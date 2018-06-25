@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 
-public class StockJobConfig {
+/*public class StockJobConfig {
 
     @Autowired
     private JobRegistryCenterConfig jobRegistryCenterConfig;
@@ -35,9 +35,9 @@ public class StockJobConfig {
         return new SpringJobScheduler(simpleJob, regCenter, getLiteJobConfiguration(simpleJob.getClass(), cron, shardingTotalCount, shardingItemParameters));
     }
 
-    /**
+    *//**
      *@Description  任务配置类
-     */
+     *//*
     private LiteJobConfiguration getLiteJobConfiguration(final Class<? extends SimpleJob> jobClass,
                                                          final String cron,
                                                          final int shardingTotalCount,
@@ -59,4 +59,4 @@ public class StockJobConfig {
 
     }
 
-}
+}*/
