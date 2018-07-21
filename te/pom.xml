@@ -73,20 +73,20 @@
 			<artifactId>jodd-core</artifactId>
 			<version>3.8</version>
 		</dependency>
-		<!--<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>-->
+		</dependency>
 		<!-- 添加springboot对amqp的支持 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20151123</version>
-		</dependency>
+		</dependency>-->
 		<!--当当框架-->
 		<dependency>
 			<groupId>com.dangdang</groupId>

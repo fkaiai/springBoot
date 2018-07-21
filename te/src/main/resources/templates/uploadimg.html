@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>uploadimg.html</title>
 
@@ -16,5 +16,24 @@
     图片<input type="file" name="file"/>
     <input type="submit" value="上传"/>
 </form>
+
+
+<script th:src="@{/js/jquery-1.11.1.min.js}"></script>
+<script>
+    function test1 () {
+        $.ajax({
+            url: '/user/selectAll',
+            type: 'GET',
+            data: {},
+            success:function(data){
+                console.log(data)
+            },
+            error:function(){
+                console.log(data)
+            }
+        })
+    }
+    test1()
+</script>
 </body>
 </html>

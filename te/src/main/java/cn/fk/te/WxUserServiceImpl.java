@@ -1,3 +1,4 @@
+/*
 package cn.fk.te;
 
 import com.alibaba.fastjson.JSON;
@@ -24,10 +25,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+*/
 /**
  * @author xianlong.liu
  * @date 2018/6/11
- */
+ *//*
+
 @Service
 public class WxUserServiceImpl implements WxUserService{
     @Autowired
@@ -298,3 +301,4 @@ public class WxUserServiceImpl implements WxUserService{
     }
 
 }
+*/

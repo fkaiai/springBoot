@@ -1,13 +1,16 @@
+/*
 package cn.fk.te;
 
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.*;
 
+*/
 /**
  * @Author frank.zhao
  * @Date 2018/6/29
- */
+ *//*
+
 public class ThreadTaskUtils {
 
     private static int corePoolSize=30;
@@ -17,17 +20,21 @@ public class ThreadTaskUtils {
     public static ThreadPoolExecutor threadPool=new ThreadPoolExecutor(corePoolSize,maximumPoolSize,keepAliveTime, TimeUnit.SECONDS,
             new LinkedBlockingDeque<Runnable>());
 
-    /**
+    */
+/**
      *  执行任务
      * @param runnable
-     */
+     *//*
+
     public static void excute(Runnable runnable){
         threadPool.execute(runnable);
     }
 
-    /**
+    */
+/**
      * 停止所有线程
-     */
+     *//*
+
     public static void close(){
         threadPool.shutdownNow();
     }
@@ -57,3 +64,4 @@ public class ThreadTaskUtils {
     }
 
 }
+*/

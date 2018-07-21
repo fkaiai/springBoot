@@ -9,11 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -36,11 +35,19 @@ public class userController {
     }
 
     @RequestMapping(value = "/selectAll",method = RequestMethod.GET)
-    public DataBox selectAll(@RequestHeader HttpHeaders headers){
+    public DataBox selectAll(@RequestHeader HttpHeaders headers, HttpServletResponse response,@CookieValue(value="aaa",required=false) String openId){
 
+        System.out.println(openId);
         List<User> res=userService.selectAll();
         logger.debug("查询成功1");
         logger.info("查询成功2{}","aaa");
+
+        //获取微信用户openid存储在cookie中的信息
+        Cookie userCookie=new Cookie("openId","aaaaasdfdzvxdasd");
+        userCookie.setMaxAge(-1);
+        userCookie.setPath("/");
+        response.addCookie(userCookie);
+
         return new DataBox("0","查找所有用户成功",res,res.size());
     }
 }

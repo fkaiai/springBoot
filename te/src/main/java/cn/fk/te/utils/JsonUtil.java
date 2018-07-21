@@ -4,8 +4,7 @@ package cn.fk.te.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONException;
-import org.json.JSONObject;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +65,7 @@ public  class JsonUtil {
     /*
      *将post请求的json字符串格式的参数转为JSONObject
      */
-    public static JSONObject httpProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
+    /*public static JSONObject httpProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
         StringBuffer sb = new StringBuffer() ;
         InputStream is = request.getInputStream();
         BufferedReader br = new BufferedReader(new InputStreamReader(is,"utf-8"));
@@ -79,7 +78,7 @@ public  class JsonUtil {
         }else {
             return new JSONObject(sb.toString());
         }
-    }
+    }*/
 
 
     public static Map<String,Object> Obj2Map(Object obj) throws Exception{
