@@ -12,7 +12,7 @@ public class thymeleafController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    @RequestMapping(value="/{url}")
+//    @RequestMapping(value="/{url}")
     public ModelAndView thymeleafUrl(@PathVariable("url") String url,ModelAndView mv){
 
         mv.setViewName("/"+url);
