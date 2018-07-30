@@ -15,12 +15,23 @@ import java.util.UUID;
 @RequestMapping("/img")
 public class imgController {
 
-    Logger log = LoggerFactory.getLogger(this.getClass());
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping("/upload")
     public void addImage(@RequestParam("image") MultipartFile file) {
 
-
+        long size = file.getSize();
+        logger.info("file.size:"+size);
+        String mime = file.getContentType();
+        logger.info("file.mime:"+mime);
+        String uploadFilePath = file.getOriginalFilename();
+        logger.info("uploadFlePath:" + uploadFilePath);
+        // 截取上传文件的文件名
+        String uploadFileName = uploadFilePath.substring(uploadFilePath.lastIndexOf('\\') + 1);
+        logger.info("multiReq.getFile：" + uploadFileName);
+        // 截取上传文件的后缀
+        String fileExtName = uploadFilePath.substring(uploadFilePath.lastIndexOf('.') + 1,uploadFilePath.length());
+        logger.info("uploadFileSuffix:" + fileExtName);
 
     }
 

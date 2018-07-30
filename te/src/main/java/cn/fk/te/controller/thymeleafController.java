@@ -12,11 +12,11 @@ public class thymeleafController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-//    @RequestMapping(value="/{url}")
-    public ModelAndView thymeleafUrl(@PathVariable("url") String url,ModelAndView mv){
+    @RequestMapping(value="/uploadimg")
+    public ModelAndView uploadimg(ModelAndView mv){
 
-        mv.setViewName("/"+url);
-        logger.info("打开链接：/"+url);
+        mv.setViewName("/uploadimg.html");
+        logger.info("打开链接：/uploadimg.html");
         return mv;
 
     }
