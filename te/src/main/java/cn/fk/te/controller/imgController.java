@@ -18,7 +18,7 @@ public class imgController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping("/upload")
-    public void addImage(@RequestParam("image") MultipartFile file) {
+    public void addImage(@RequestParam("file") MultipartFile file) {
 
         long size = file.getSize();
         logger.info("file.size:"+size);

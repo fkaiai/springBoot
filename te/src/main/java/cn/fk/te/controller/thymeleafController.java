@@ -15,8 +15,8 @@ public class thymeleafController {
     @RequestMapping(value="/uploadimg")
     public ModelAndView uploadimg(ModelAndView mv){
 
-        mv.setViewName("/uploadimg.html");
-        logger.info("打开链接：/uploadimg.html");
+        mv.setViewName("/uploadimg");
+        logger.info("打开链接：/uploadimg");
         return mv;
 
     }
