@@ -1,21 +1,28 @@
-package cn.fk.te.utils;
+package cn.fk.te.service;
 
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.*;
 
-/**
- * @Author frank.zhao
- * @Date 2018/6/29
- */
-public class ThreadTaskUtils {
+@Service
+public class AsynTaskPool {
 
-    private static int corePoolSize=30;
-    private static int maximumPoolSize=50;
+    private static int corePoolSize=1;
+    private static int maximumPoolSize=8;
     private static long keepAliveTime=300L;
 
-    public static ThreadPoolExecutor threadPool=new ThreadPoolExecutor(corePoolSize,maximumPoolSize,keepAliveTime, TimeUnit.SECONDS,
-            new LinkedBlockingDeque<Runnable>());
+    //队列：直接提交SynchronousQueue，无界队列LinkedBlockingQueue，有界队列ArrayBlockingQueue
+    //ThreadPoolExecutor自己已经提供了四个拒绝策略，分别是CallerRunsPolicy,AbortPolicy,DiscardPolicy,DiscardOldestPolicy
+
+    public static ThreadPoolExecutor threadPool=new ThreadPoolExecutor(
+            corePoolSize,
+            maximumPoolSize,
+            keepAliveTime,
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<Runnable>(),
+            new ThreadPoolExecutor.CallerRunsPolicy()
+            );
 
     /**
      *  执行任务
@@ -33,7 +40,7 @@ public class ThreadTaskUtils {
     }
 
 
-    public Executor getAsyncExecutor() {
+    /*public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(30);
         executor.setMaxPoolSize(50);
@@ -43,7 +50,7 @@ public class ThreadTaskUtils {
         executor.setRejectedExecutionHandler(new RejectedExecutionHandler() {
             @Override
             public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
-                String message = "kafka对应消费线程已满";
+                String message = "对应消费线程已满";
                 if (!e.isShutdown()) {
                     message += ",已执行,当前队列："+e.getQueue().size()+",活跃线程数："+e.getActiveCount();
                     r.run();
@@ -54,6 +61,6 @@ public class ThreadTaskUtils {
         });
         executor.initialize();
         return executor;
-    }
+    }*/
 
 }
