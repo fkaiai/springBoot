@@ -20,7 +20,7 @@ public class Scheduler {
 
     public static ConcurrentHashMap<String, String> TASK_MAP = new ConcurrentHashMap<>(32);
 
-    @Scheduled(cron="0/10 * * * * ?")
+//    @Scheduled(cron="0/10 * * * * ?")
     public void job1(){
 
 //        threadPoolTaskScheduler.schedule(new task1(), DateUtil.parseLong("2018-08-19 19:17:00"));
