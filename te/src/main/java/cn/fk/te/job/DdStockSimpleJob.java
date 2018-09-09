@@ -1,3 +1,4 @@
+/*
 package cn.fk.te.job;
 
 import com.dangdang.ddframe.job.api.ShardingContext;
@@ -23,3 +24,4 @@ public class DdStockSimpleJob implements SimpleJob {
         ));
     }
 }
+*/
