@@ -25,6 +25,12 @@ public class userController {
     @Autowired
     UserServiceImpl userService;
 
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public String test(){
+        System.out.println(12);
+        return "success";
+    }
+
     @RequestMapping(value = "/insertUser",method = RequestMethod.GET)
     public String insertUser(){
 
