@@ -28,6 +28,7 @@ public class userController {
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public String test(){
         System.out.println(12);
+        logger.info("a,{}","bb");
         return "success";
     }
 

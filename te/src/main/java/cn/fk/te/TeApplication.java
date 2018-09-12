@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@EnableScheduling
 @EnableTransactionManagement
 @MapperScan("cn.fk.te.mapper")
 public class TeApplication extends SpringBootServletInitializer {
