@@ -22,9 +22,9 @@ public class ZkTest {
     @Test
     public void tt() throws InterruptedException, IOException, KeeperException {
 
-        DistributedLock lock = null;
+        /*DistributedLock lock = null;
         lock = new DistributedLock();
-        lock.lock();
+        lock.lock();*/
 
     }
 

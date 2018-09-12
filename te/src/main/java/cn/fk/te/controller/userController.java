@@ -35,18 +35,13 @@ public class userController {
     }
 
     @RequestMapping(value = "/selectAll",method = RequestMethod.GET)
-    public DataBox selectAll(@RequestHeader HttpHeaders headers, HttpServletResponse response,@CookieValue(value="aaa",required=false) String openId){
+    public DataBox selectAll(@RequestHeader HttpHeaders headers, HttpServletResponse response){
 
-        System.out.println(openId);
         List<User> res=userService.selectAll();
         logger.debug("查询成功1");
         logger.info("查询成功2{}","aaa");
 
-        //获取微信用户openid存储在cookie中的信息
-        Cookie userCookie=new Cookie("openId","aaaaasdfdzvxdasd");
-        userCookie.setMaxAge(-1);
-        userCookie.setPath("/");
-        response.addCookie(userCookie);
+
 
         return new DataBox("0","查找所有用户成功",res,res.size());
     }
