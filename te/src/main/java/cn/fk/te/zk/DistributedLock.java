@@ -50,6 +50,7 @@ public class DistributedLock {
             // 若为节点删除，证明序列的上一节点已删除，此时释放阀门让当前的lock获得锁
             //--------------------------------------------------------------
             if (event.getType() == Event.EventType.NodeDeleted)
+                //其它的被唤醒
                 latch.countDown();
         }
     }
@@ -101,7 +102,7 @@ public class DistributedLock {
                 // 阀门等待sessionTimeout的时间
                 // 当等待sessionTimeout的时间过后，上一个lock的Zookeeper连接会过期，删除所有临时节点，触发监听器
                 //--------------------------------------------------------------
-                latch.await(sessionTimeout, TimeUnit.MILLISECONDS);
+                latch.await();
                 System.out.println("thread " + Thread.currentThread().getName() +
                         " has get the lock, lockId is " + lockId);
             }
