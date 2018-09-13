@@ -22,6 +22,7 @@ public class RestBizController {
 
         for (int i = 0; i < 10; i++) {
             new Thread(new Runnable() {
+                @Override
                 public void run() {
                     DistributedLock lock = null;
                     try {
