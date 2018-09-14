@@ -11,14 +11,12 @@ import java.util.TreeSet;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by massive on 2016-12-15.
- */
+
 public class DistributedLock {
 
     private String lockId;
 
-    private static final String LOCK_ROOT = "/LOCKS";
+    private String root = "/locks";
 
     //--------------------------------------------------------------
     // data为存储的节点数据内容
@@ -29,17 +27,18 @@ public class DistributedLock {
     private final CountDownLatch latch = new CountDownLatch(1);
 
     private ZooKeeper zk;
-
     private int sessionTimeout;
+    private String LOCK_ROOT;
 
     public DistributedLock(ZooKeeper zk,int sessionTimeout) {
         this.zk = zk;
         this.sessionTimeout = sessionTimeout;
     }
 
-    public DistributedLock() throws IOException, KeeperException, InterruptedException {
+    public DistributedLock(String lockName) throws IOException, KeeperException, InterruptedException {
         this.zk = ZookeeperClient.getInstance();
         this.sessionTimeout = ZookeeperClient.getSessionTimeout();
+        this.LOCK_ROOT=lockName;
     }
 
     class LockWatcher implements Watcher {
@@ -102,7 +101,7 @@ public class DistributedLock {
                 // 阀门等待sessionTimeout的时间
                 // 当等待sessionTimeout的时间过后，上一个lock的Zookeeper连接会过期，删除所有临时节点，触发监听器
                 //--------------------------------------------------------------
-                latch.await();
+                latch.await(sessionTimeout, TimeUnit.MILLISECONDS);
                 System.out.println("thread " + Thread.currentThread().getName() +
                         " has get the lock, lockId is " + lockId);
             }

@@ -26,11 +26,11 @@ public class RestBizController {
                 public void run() {
                     DistributedLock lock = null;
                     try {
-                        lock = new DistributedLock();
+                        lock = new DistributedLock("/lgTaskLock");
                         latch.countDown();
                         latch.await();
                         lock.lock();
-                        Thread.sleep(12000);
+                        Thread.sleep(2000);
                     }  catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (KeeperException e) {
