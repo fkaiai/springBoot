@@ -16,7 +16,7 @@ public class DistributedLock {
 
     private String lockId;
 
-    private String root = "/locks";
+    private final String ROOT = "/LOCKS";
 
     //--------------------------------------------------------------
     // data为存储的节点数据内容
@@ -38,7 +38,7 @@ public class DistributedLock {
     public DistributedLock(String lockName) throws IOException, KeeperException, InterruptedException {
         this.zk = ZookeeperClient.getInstance();
         this.sessionTimeout = ZookeeperClient.getSessionTimeout();
-        this.LOCK_ROOT=lockName;
+        this.LOCK_ROOT=ROOT+lockName;
     }
 
     class LockWatcher implements Watcher {
