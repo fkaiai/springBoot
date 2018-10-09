@@ -9,15 +9,14 @@ spring:
     password: root
 
   freemarker:
-      request-context-attribute: req  #req访问request
-      suffix: .html  #后缀名
+      allow-request-override: false
+      cache: true
+      check-template-location: true
+      charset: UTF-8
       content-type: text/html
-      enabled: true
-      cache: false #缓存配置
-      template-loader-path: classpath:/templates/ #模板加载路径 按需配置
-      charset: UTF-8 #编码格式
-      settings:
-        number_format: '0.##'   #数字格式化，无小数点
+      expose-request-attributes: false
+      expose-session-attributes: false
+      expose-spring-macro-helpers: false
 
 
 #mybatis配置
@@ -25,15 +24,6 @@ mybatis:
   typeAliasesPackage: cn.fk.te.entity
   mapperLocations: classpath:mappers/*.xml
 
-
-#当当定时任务
-#regCenter:
-#  serverList: localhost:2181
-#  namespace: elastic-job-lite-springboot
-#stockJob:
-#  cron: 0/5 * * * * ?
-#  shardingTotalCount: 2
-#  shardingItemParameters: 0=Chengdu0,1=Chengdu1
 
 logging:
   level:

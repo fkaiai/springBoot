@@ -52,4 +52,9 @@ public class userController {
 
         return new DataBox("0","查找所有用户成功",res,res.size());
     }
+
+
+    public static void main(String[] args) {
+
+    }
 }
