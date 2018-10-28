@@ -4,9 +4,5 @@ import cn.fk.te.entity.User;
 
 import java.util.List;
 
-public interface UserService {
-
-    int insert(User user);
-
-    List<User> selectAll();
+public interface UserService extends BaseCRUDService<Long, User> {
 }

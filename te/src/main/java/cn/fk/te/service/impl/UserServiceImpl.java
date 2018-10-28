@@ -10,21 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
-
-    @Autowired
-    UserMapper userMapper;
-
-    @Override
-//    @Transactional
-    public int insert(User user) {
-        return userMapper.insert(user);
-    }
-
-    @Override
-    public List<User> selectAll() {
-        return userMapper.selectAll();
-    }
-
-
+public class UserServiceImpl extends AbstractBaseCRUDService<Long, User, UserMapper> implements UserService {
 }

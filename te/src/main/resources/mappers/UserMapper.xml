@@ -19,8 +19,12 @@
     )
   </insert>
 
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="getAll" resultMap="BaseResultMap">
     select * from user
+  </select>
+
+  <select id="get" resultMap="BaseResultMap">
+    select * from user where id=#{id,jdbcType=VARCHAR}
   </select>
 
 </mapper>
