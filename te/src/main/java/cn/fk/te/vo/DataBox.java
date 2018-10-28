@@ -1,4 +1,4 @@
-package cn.fk.te.utils;
+package cn.fk.te.vo;
 
 public class DataBox {
 	
