@@ -2,26 +2,21 @@ server:
   port: 8088
 
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ff?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: root
-
+  profiles:
+    active: dev
   freemarker:
-      allow-request-override: false
-      cache: true
-      check-template-location: true
-      charset: UTF-8
-      content-type: text/html
-      expose-request-attributes: false
-      expose-session-attributes: false
-      expose-spring-macro-helpers: false
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
 
 
 #mybatis配置
 mybatis:
-  typeAliasesPackage: cn.fk.te.entity
   mapperLocations: classpath:mappers/*.xml
 
 

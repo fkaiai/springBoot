@@ -4,10 +4,10 @@ import cn.fk.te.entity.User;
 
 import java.util.List;
 
-public interface UserMapper {
+public interface UserMapper extends BaseCRUDMapper<Long, User>{
 
-    int insert(User user);
 
-    List<User> selectAll();
+
+    //List<User> selectAll();
 
 }
