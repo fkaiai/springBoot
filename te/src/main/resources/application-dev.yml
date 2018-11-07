@@ -4,3 +4,25 @@ spring:
     url: jdbc:mysql://localhost:3306/ff?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
+#redis配置，以下有默认配置的也可以使用默认配置
+  redis:
+    host: 10.83.74.114
+    port: 6379
+    password: mmtccm
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+        timeout: 0ms
+  bgp_to_cmk_rabbitmq:
+      host: mq.maimaiti.tech
+      port: 56720
+      username: BGP_TO_CMK_consumer01
+      password: mwsDgSW3Xp7V3Q==
+      publisherConfirms: true
+      virtualHost: BGP_TO_CMK_VHOST
+      queueName1: BGP_TO_CMK_MMT_DC_TEMPLATE_SEND_USER_INFO_QUEUE
+      queueName2: BGP_TO_CMK_MMT_DC_TEMPLATE_SECOND_SEND_USER_TABLE_QUEUE
+      queueName3: BGP_TO_CMK_MMT_DC_SEND_USER_TABLE
