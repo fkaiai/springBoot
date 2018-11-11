@@ -28,8 +28,8 @@ public class Tests {
 
 	@Test
 	public void test123() {
-		String encodeStr= DigestUtils.md5Hex("appid=wxd93613aa9b48b889&noncestr=1J7VOOPLXZ6563DOCVYQW3VG5ZUL2K91&package=Sign=WXPay&partnerid=1401854202&prepayid=wx09161954351867474a113b4e3821290560&timeStamp=1541751594&key=A8B47FA3640EE67CABF779EECB0CEA09");
-		System.out.println(encodeStr);
+		/*String encodeStr= DigestUtils.md5Hex("appid=wxd93613aa9b48b889&noncestr=1J7VOOPLXZ6563DOCVYQW3VG5ZUL2K91&package=Sign=WXPay&partnerid=1401854202&prepayid=wx09161954351867474a113b4e3821290560&timeStamp=1541751594&key=A8B47FA3640EE67CABF779EECB0CEA09");
+		System.out.println(encodeStr);*/
 
 
 	}

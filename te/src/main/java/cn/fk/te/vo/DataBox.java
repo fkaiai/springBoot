@@ -71,6 +71,11 @@ public class DataBox {
     public static DataBox newInstance(String message) {
         return new DataBox(message);
     }
+
+
+    public static DataBox FailInstance(String message){
+        return new DataBox("-1",message);
+    }
     
 	public String getStatus() {
 		return status;

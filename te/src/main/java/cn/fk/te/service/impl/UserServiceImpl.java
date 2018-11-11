@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * @author gyl
+ */
 @Service
 public class UserServiceImpl extends AbstractBaseCRUDService<Long, User, UserMapper> implements UserService {
 }

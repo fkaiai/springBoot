@@ -1,3 +1,4 @@
+/*
 package cn.fk.te.controller;
 
 import cn.fk.te.entity.User;
@@ -60,7 +61,10 @@ public class userController {
     }
 
 
-    /*public static void main(String[] args) {
+    */
+/*public static void main(String[] args) {
         System.out.println(11);
-    }*/
+    }*//*
+
 }
+*/
