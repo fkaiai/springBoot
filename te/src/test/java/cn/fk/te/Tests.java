@@ -34,7 +34,7 @@ public class Tests {
 		System.out.println(DigestUtils.md5Hex(aa));
 		System.out.println(md5(aa));
 		System.out.println(md51(aa));
-
+		System.out.println(1);
 
 
 	}
