@@ -1,9 +1,11 @@
 package cn.fk.admin.config;
 
-import com.neo.entity.SysPermission;
-import com.neo.entity.SysRole;
-import com.neo.entity.UserInfo;
-import com.neo.sevice.UserInfoService;
+
+import cn.fk.admin.entity.SysPermission;
+import cn.fk.admin.entity.SysRole;
+
+import cn.fk.admin.entity.UserInfo;
+import cn.fk.admin.sevice.UserInfoService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

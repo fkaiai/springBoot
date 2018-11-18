@@ -1,6 +1,7 @@
 package cn.fk.admin.sevice;
 
-import com.neo.entity.UserInfo;
+
+import cn.fk.admin.entity.UserInfo;
 
 public interface UserInfoService {
     /**通过username查找用户信息;*/

@@ -1,6 +1,7 @@
 package cn.fk.admin.dao;
 
-import com.neo.entity.UserInfo;
+
+import cn.fk.admin.entity.UserInfo;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserInfoDao extends CrudRepository<UserInfo,Long> {

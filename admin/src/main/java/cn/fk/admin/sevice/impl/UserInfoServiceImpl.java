@@ -1,8 +1,9 @@
 package cn.fk.admin.sevice.impl;
 
-import com.neo.dao.UserInfoDao;
-import com.neo.entity.UserInfo;
-import com.neo.sevice.UserInfoService;
+
+import cn.fk.admin.dao.UserInfoDao;
+import cn.fk.admin.entity.UserInfo;
+import cn.fk.admin.sevice.UserInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
