@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement(proxyTargetClass = true)
-@MapperScan("cn.fk.te.mapper")
+@MapperScan("cn.fk.te")
 public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

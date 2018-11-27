@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.fk.te.product.mapper.ProductExtendMapper" >
+  <resultMap id="BaseResultMap" type="cn.fk.te.product.model.po.ProductExtend" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="short_time" property="shortTime" jdbcType="TINYINT" />
+    <result column="zhima" property="zhima" jdbcType="TINYINT" />
+    <result column="credit_card" property="creditCard" jdbcType="TINYINT" />
+    <result column="large" property="large" jdbcType="TINYINT" />
+    <result column="repayment_credit_card" property="repaymentCreditCard" jdbcType="TINYINT" />
+    <result column="salary" property="salary" jdbcType="TINYINT" />
+    <result column="mortgage" property="mortgage" jdbcType="TINYINT" />
+    <result column="passing" property="passing" jdbcType="TINYINT" />
+    <result column="loan_month_min" property="loanMonthMin" jdbcType="TINYINT" />
+    <result column="loan_month_max" property="loanMonthMax" jdbcType="TINYINT" />
+    <result column="credit_test" property="creditTest" jdbcType="TINYINT" />
+    <result column="you_like" property="youLike" jdbcType="TINYINT" />
+    <result column="new_loan" property="newLoan" jdbcType="TINYINT" />
+    <result column="today_adopt" property="todayAdopt" jdbcType="TINYINT" />
+  </resultMap>
+
+</mapper>

@@ -12,6 +12,7 @@
     <modules>
         <module>te</module>
         <module>admin</module>
+        <module>common</module>
 
     </modules>
 </project>
