@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.fk.te.product.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="cn.fk.te.product.model.po.Product">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="min_position" jdbcType="DECIMAL" property="minPosition" />
+    <result column="max_position" jdbcType="DECIMAL" property="maxPosition" />
+    <result column="loan_time_limit" jdbcType="VARCHAR" property="loanTimeLimit" />
+    <result column="label_txt" jdbcType="VARCHAR" property="labelTxt" />
+    <result column="label_under" jdbcType="VARCHAR" property="labelUnder" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="extension_url" jdbcType="VARCHAR" property="extensionUrl" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="customer_phone" jdbcType="VARCHAR" property="customerPhone" />
+    <result column="is_jump" jdbcType="VARCHAR" property="isJump" />
+    <result column="is_enable" jdbcType="DECIMAL" property="isEnable" />
+    <result column="orders" jdbcType="DECIMAL" property="orders" />
+    <result column="win_type" jdbcType="VARCHAR" property="winType" />
+    <result column="float_status" jdbcType="DECIMAL" property="floatStatus" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="is_enable_today" jdbcType="VARCHAR" property="isEnableToday" />
+    <result column="today_orders" jdbcType="VARCHAR" property="todayOrders" />
+    <result column="is_enable_hot" jdbcType="VARCHAR" property="isEnableHot" />
+    <result column="hot_orders" jdbcType="VARCHAR" property="hotOrders" />
+    <result column="details" jdbcType="VARCHAR" property="details" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="pay_method" jdbcType="VARCHAR" property="payMethod" />
+    <result column="manage_url" jdbcType="VARCHAR" property="manageUrl" />
+  </resultMap>
+
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from product p left JOIN product_extend pc ON p.id=pc.id WHERE 1=1
+    <if test="bean.isEnable!=null and bean.isEnable!=''">
+      and p.is_enable = #{bean.isEnable,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.isEnableToday!=null and bean.isEnableToday!=''">
+      and p.is_enable_today = #{bean.isEnableToday,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.isEnableHot!=null and bean.isEnableHot!=''">
+      and p.is_enable_hot = #{bean.isEnableHot,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.shortTime!=null and bean.shortTime!=''">
+      and pc.short_time = #{bean.shortTime,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.zhima!=null and bean.zhima!=''">
+      and pc.zhima = #{bean.zhima,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.creditCard!=null and bean.creditCard!=''">
+      and pc.CREDIT_CARD = #{bean.creditCard,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.large!=null and bean.large!=''">
+      and pc.LARGE = #{bean.large,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.repaymentCreditCard!=null and bean.repaymentCreditCard!=''">
+      and pc.REPAYMENT_CREDIT_CARD = #{bean.repaymentCreditCard,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.salary!=null and bean.salary!=''">
+      and pc.SALARY = #{bean.salary,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.mortgage!=null and bean.mortgage!=''">
+      and pc.MORTGAGE = #{bean.mortgage,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.passing!=null and bean.passing!=''">
+      and pc.PASSING = #{bean.passing,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.loanMonthMin!=null and (bean.loanMonthMin!='' or bean.loanMonthMin=='0'.toString()) and bean.loanMonthMax!=null and bean.loanMonthMax!=''">
+      and ((pc.LOAN_MONTH_MIN <![CDATA[<=]]> #{bean.loanMonthMin,jdbcType=VARCHAR} and #{bean.loanMonthMin,jdbcType=VARCHAR} <![CDATA[<=]]>pc.LOAN_MONTH_MAX)
+      or (pc.LOAN_MONTH_MIN <![CDATA[<=]]> #{bean.loanMonthMax,jdbcType=VARCHAR} and #{bean.loanMonthMax,jdbcType=VARCHAR}<![CDATA[<=]]>pc.LOAN_MONTH_MAX))
+    </if>
+    <if test="bean.minPosition!=null and (bean.minPosition!='' or bean.minPosition=='0'.toString()) and bean.maxPosition!=null and bean.maxPosition!=''">
+      and ((p.MIN_POSITION<![CDATA[<=]]>#{bean.minPosition,jdbcType=VARCHAR} and #{bean.minPosition,jdbcType=VARCHAR}<![CDATA[<=]]>p.MAX_POSITION)
+      or (p.MIN_POSITION<![CDATA[<=]]>#{bean.maxPosition,jdbcType=VARCHAR} and #{bean.maxPosition,jdbcType=VARCHAR}<![CDATA[<=]]>p.MAX_POSITION))
+    </if>
+    <if test="bean.creditTest!=null and bean.creditTest!=''">
+      and pc.CREDIT_TEST=#{bean.creditTest,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.youLike!=null and bean.youLike!=''">
+      and pc.YOU_LIKE=#{bean.youLike,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.newLoan!=null and bean.newLoan!=''">
+      and pc.NEW_LOAN=#{bean.newLoan,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.todayAdopt!=null and bean.todayAdopt!=''">
+      and pc.TODAY_ADOPT=#{bean.todayAdopt,jdbcType=VARCHAR}
+    </if>
+
+  </select>
+
+  <select id="getByParam" resultMap="BaseResultMap">
+    SELECT * FROM product p left JOIN product_extend pc ON p.id=pc.id WHERE 1=1
+    <if test="bean.isEnable!=null and bean.isEnable!=''">
+      and p.is_enable = #{bean.isEnable,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.isEnableToday!=null and bean.isEnableToday!=''">
+      and p.is_enable_today = #{bean.isEnableToday,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.isEnableHot!=null and bean.isEnableHot!=''">
+      and p.is_enable_hot = #{bean.isEnableHot,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.shortTime!=null and bean.shortTime!=''">
+      and pc.short_time = #{bean.shortTime,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.zhima!=null and bean.zhima!=''">
+      and pc.zhima = #{bean.zhima,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.creditCard!=null and bean.creditCard!=''">
+      and pc.CREDIT_CARD = #{bean.creditCard,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.large!=null and bean.large!=''">
+      and pc.LARGE = #{bean.large,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.repaymentCreditCard!=null and bean.repaymentCreditCard!=''">
+      and pc.REPAYMENT_CREDIT_CARD = #{bean.repaymentCreditCard,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.salary!=null and bean.salary!=''">
+      and pc.SALARY = #{bean.salary,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.mortgage!=null and bean.mortgage!=''">
+      and pc.MORTGAGE = #{bean.mortgage,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.passing!=null and bean.passing!=''">
+      and pc.PASSING = #{bean.passing,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.loanMonthMin!=null and (bean.loanMonthMin!='' or bean.loanMonthMin=='0'.toString()) and bean.loanMonthMax!=null and bean.loanMonthMax!=''">
+      and ((pc.LOAN_MONTH_MIN <![CDATA[<=]]> #{bean.loanMonthMin,jdbcType=VARCHAR} and #{bean.loanMonthMin,jdbcType=VARCHAR} <![CDATA[<=]]>pc.LOAN_MONTH_MAX)
+      or (pc.LOAN_MONTH_MIN <![CDATA[<=]]> #{bean.loanMonthMax,jdbcType=VARCHAR} and #{bean.loanMonthMax,jdbcType=VARCHAR}<![CDATA[<=]]>pc.LOAN_MONTH_MAX))
+    </if>
+    <if test="bean.minPosition!=null and (bean.minPosition!='' or bean.minPosition=='0'.toString()) and bean.maxPosition!=null and bean.maxPosition!=''">
+      and ((p.MIN_POSITION<![CDATA[<=]]>#{bean.minPosition,jdbcType=VARCHAR} and #{bean.minPosition,jdbcType=VARCHAR}<![CDATA[<=]]>p.MAX_POSITION)
+      or (p.MIN_POSITION<![CDATA[<=]]>#{bean.maxPosition,jdbcType=VARCHAR} and #{bean.maxPosition,jdbcType=VARCHAR}<![CDATA[<=]]>p.MAX_POSITION))
+    </if>
+    <if test="bean.creditTest!=null and bean.creditTest!=''">
+      and pc.CREDIT_TEST=#{bean.creditTest,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.youLike!=null and bean.youLike!=''">
+      and pc.YOU_LIKE=#{bean.youLike,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.newLoan!=null and bean.newLoan!=''">
+      and pc.NEW_LOAN=#{bean.newLoan,jdbcType=VARCHAR}
+    </if>
+    <if test="bean.todayAdopt!=null and bean.todayAdopt!=''">
+      and pc.TODAY_ADOPT=#{bean.todayAdopt,jdbcType=VARCHAR}
+    </if>
+    <if test="order!=null">
+      order by ${order} ${sort}
+    </if>
+    <if test="offset!=null or size!=null">
+      limit ${offset},${size};
+    </if>
+  </select>
+
+  <select id="getAll" resultMap="BaseResultMap">
+    select * from product order by orders
+  </select>
+
+
+</mapper>
