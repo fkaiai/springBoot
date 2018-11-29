@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Data
 public class Product implements BaseModel<Long> {
+    //1
 
     private Long id;
 
