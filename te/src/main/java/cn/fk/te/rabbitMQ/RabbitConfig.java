@@ -1,3 +1,4 @@
+/*
 package cn.fk.te.rabbitMQ;
 
 import org.springframework.amqp.core.Queue;
@@ -70,3 +71,4 @@ public class RabbitConfig {
 
 }
 
+*/
