@@ -10,6 +10,7 @@ import java.util.Date;
 public class Product implements BaseModel<Long> {
     //1
     //2
+    //4
 
     private Long id;
 
