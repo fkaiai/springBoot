@@ -5,6 +5,9 @@ import lombok.Data;
 
 @Data
 public class ProductExtend extends Product{
+    //1
+    //2
+    //5
 
     //短期小额贷
     private Integer shortTime;
