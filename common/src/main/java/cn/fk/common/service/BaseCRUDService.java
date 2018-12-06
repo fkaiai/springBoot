@@ -15,6 +15,8 @@ public interface BaseCRUDService <PK extends Serializable, M extends BaseModel<P
 
     public PK insert(M model);
 
+    public PK insertOrUpdate(M model);
+
     public Integer delete(PK id);
 
     public Integer update(M model);

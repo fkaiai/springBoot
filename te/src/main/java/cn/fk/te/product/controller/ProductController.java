@@ -73,9 +73,11 @@ public class ProductController {
         if(StringUtil.isNotEmpty(loanMonthMin)) productExtend.setLoanMonthMin(Integer.valueOf(loanMonthMin));
         if(StringUtil.isNotEmpty(loanMonthMax)) productExtend.setLoanMonthMax(Integer.valueOf(loanMonthMax));
 
-        if(order.equals("orders")) productExtend.setIsEnable("1");
-        if(order.equals("today_orders")) productExtend.setIsEnableToday("1");
-        if(order.equals("hot_orders")) productExtend.setIsEnableHot("1");
+        if(StringUtil.isNotEmpty(order)){
+            if(order.equals("orders")) productExtend.setIsEnable("1");
+            if(order.equals("today_orders")) productExtend.setIsEnableToday("1");
+            if(order.equals("hot_orders")) productExtend.setIsEnableHot("1");
+        }
 
         Page<Long,Product> list=  productService.getPageList(productExtend,pageNum,pageSize,sort,order);
         return list;

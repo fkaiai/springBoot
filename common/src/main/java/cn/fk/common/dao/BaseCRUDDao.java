@@ -12,6 +12,8 @@ public interface BaseCRUDDao<PK extends Serializable, M extends BaseModel<PK>> e
 
     public PK insert(M model);
 
+    public PK insertOrUpdate(M model);
+
     public Integer delete(@Param("id") PK id);
 
     public Integer update(M model);

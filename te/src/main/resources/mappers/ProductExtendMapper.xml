@@ -19,4 +19,18 @@
     <result column="today_adopt" property="todayAdopt" jdbcType="TINYINT" />
   </resultMap>
 
+  <insert id="insertOrUpdate">
+    insert into product_extend (id,short_time,zhima,credit_card,large,repayment_credit_card,
+    salary,mortgage,passing,loan_month_min,loan_month_max,credit_test,you_like,new_loan,today_adopt)
+    values
+    (#{memberId})
+    on duplicate key update
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id},
+      </if>
+
+    </trim>
+  </insert>
+
 </mapper>

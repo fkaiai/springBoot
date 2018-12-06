@@ -26,6 +26,12 @@ public abstract class AbstractBaseCRUDService <PK extends Serializable, M extend
 
     @Override
     @Transactional
+    public PK insertOrUpdate(M model){
+        return dao.insertOrUpdate(model);
+    }
+
+    @Override
+    @Transactional
     public Integer delete(PK id){
         return dao.delete(id);
     }
