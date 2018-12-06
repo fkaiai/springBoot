@@ -17,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.assertj.core.util.Hexadecimals.byteToHexString;
 
@@ -29,11 +31,12 @@ public class Tests {
 
 	@Test
 	public void test123() {
-		String aa="appid=wxd93613aa9b48b889&noncestr=1J7VOOPLXZ6563DOCVYQW3VG5ZUL2K91&package=Sign=WXPay&partnerid=1401854202&prepayid=wx09161954351867474a113b4e3821290560&timeStamp=1541751594&key=A8B47FA3640EE67CABF779EECB0CEA09";
+		Set<Integer> set = new HashSet<Integer>();
 
-		System.out.println(DigestUtils.md5Hex(aa));
-		System.out.println(md5(aa));
-		System.out.println(md51(aa));
+		set.add(5);
+		set.add(1);
+		set.add(4);
+		System.out.println(set);
 
 
 
