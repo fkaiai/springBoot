@@ -1,39 +1,37 @@
 /*
- Navicat Premium Data Transfer
-https://blog.csdn.net/weixin_38132621/article/details/80216075
- Source Server         : 本机
- Source Server Type    : MySQL
- Source Server Version : 50717
- Source Host           : localhost
- Source Database       : ff
+Navicat MySQL Data Transfer
 
- Target Server Type    : MySQL
- Target Server Version : 50717
- File Encoding         : utf-8
+Source Server         : localhost
+Source Server Version : 50717
+Source Host           : localhost:3306
+Source Database       : ff
 
- Date: 12/03/2018 20:55:50 PM
+Target Server Type    : MYSQL
+Target Server Version : 50717
+File Encoding         : 65001
+
+Date: 2018-12-06 18:47:57
 */
 
-SET NAMES utf8;
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
---  Table structure for `user`
+-- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `role` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission` varchar(255) DEFAULT NULL,
+  `ban` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Records of `user`
+-- Records of user
 -- ----------------------------
-BEGIN;
-INSERT INTO `user` VALUES ('howie', '123456', 'user', '1'), ('swit', '123456789', 'admin', '2');
-COMMIT;
-
-SET FOREIGN_KEY_CHECKS = 1;
+INSERT INTO `user` VALUES ('1', 'howie', '1234567', 'admin', 'normal', '0');
+INSERT INTO `user` VALUES ('2', 'swit', '123456789', 'user', 'normal', '0');
+INSERT INTO `user` VALUES ('3', 'kobe', '112233', 'user', 'vip', '0');
