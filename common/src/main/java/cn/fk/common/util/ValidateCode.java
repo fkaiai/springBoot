@@ -142,7 +142,7 @@ public class ValidateCode {
      */
     public static void main(String[] args) {
         ValidateCode vCode = new ValidateCode(160,40,5,150);
-        String path="D:/"+new Date().getTime()+".png";
+        //String path="D:/"+new Date().getTime()+".png";
         //System.out.println(vCode.getCode());
         //vCode.write(path);
     }
