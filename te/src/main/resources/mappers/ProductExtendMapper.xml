@@ -19,17 +19,159 @@
     <result column="today_adopt" property="todayAdopt" jdbcType="TINYINT" />
   </resultMap>
 
-  <insert id="insertOrUpdate">
-    insert into product_extend (id,short_time,zhima,credit_card,large,repayment_credit_card,
-    salary,mortgage,passing,loan_month_min,loan_month_max,credit_test,you_like,new_loan,today_adopt)
-    values
-    (#{memberId})
-    on duplicate key update
-    <trim suffixOverrides=",">
-      <if test="id != null">
-        id = #{id},
-      </if>
+  <sql id="table_name">product_extend</sql>
 
+  <sql id="column_list">
+    id,short_time,zhima,credit_card,large,repayment_credit_card,salary,mortgage,passing,loan_month_min,loan_month_max,credit_test,you_like,new_loan,today_adopt
+  </sql>
+
+  <select id="get" resultMap="BaseResultMap">
+    select * from <include refid="table_name"/> where id=#{id}
+  </select>
+
+  <insert id="insertOrUpdate">
+    insert into <include refid="table_name"/>
+    <trim prefix="(" suffixOverrides="," suffix=")">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="shortTime != null">
+        short_time,
+      </if>
+      <if test="zhima != null">
+        zhima,
+      </if>
+      <if test="creditCard != null">
+        credit_card,
+      </if>
+      <if test="large != null">
+        large,
+      </if>
+      <if test="repaymentCreditCard != null">
+        repayment_credit_card,
+      </if>
+      <if test="salary != null">
+        salary,
+      </if>
+      <if test="mortgage != null">
+        mortgage,
+      </if>
+      <if test="passing != null">
+        passing,
+      </if>
+      <if test="loanMonthMin != null">
+        loan_month_min,
+      </if>
+      <if test="loanMonthMax != null">
+        loan_month_max,
+      </if>
+      <if test="creditTest != null">
+        credit_test,
+      </if>
+      <if test="youLike != null">
+        you_like,
+      </if>
+      <if test="newLoan != null">
+        new_loan,
+      </if>
+      <if test="todayAdopt != null">
+        today_adopt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="shortTime != null">
+        #{shortTime},
+      </if>
+      <if test="zhima != null">
+        #{zhima},
+      </if>
+      <if test="creditCard != null">
+        #{creditCard},
+      </if>
+      <if test="large != null">
+        #{large},
+      </if>
+      <if test="repaymentCreditCard != null">
+        #{repaymentCreditCard},
+      </if>
+      <if test="salary != null">
+        #{salary},
+      </if>
+      <if test="mortgage != null">
+        #{mortgage},
+      </if>
+      <if test="passing != null">
+        #{passing},
+      </if>
+      <if test="loanMonthMin != null">
+        #{loanMonthMin},
+      </if>
+      <if test="loanMonthMax != null">
+        #{loanMonthMax},
+      </if>
+      <if test="creditTest != null">
+        #{creditTest},
+      </if>
+      <if test="youLike != null">
+        #{youLike},
+      </if>
+      <if test="newLoan != null">
+        #{newLoan},
+      </if>
+      <if test="todayAdopt != null">
+        #{todayAdopt},
+      </if>
+    </trim>
+    on duplicate key update
+    <trim  suffixOverrides=",">
+      <if test="id != null">
+        id=#{id},
+      </if>
+      <if test="shortTime != null">
+        short_time=#{shortTime},
+      </if>
+      <if test="zhima != null">
+        zhima=#{zhima},
+      </if>
+      <if test="creditCard != null">
+        credit_card=#{creditCard},
+      </if>
+      <if test="large != null">
+        large=#{large},
+      </if>
+      <if test="repaymentCreditCard != null">
+        repayment_credit_card=#{repaymentCreditCard},
+      </if>
+      <if test="salary != null">
+        salary=#{salary},
+      </if>
+      <if test="mortgage != null">
+        mortgage=#{mortgage},
+      </if>
+      <if test="passing != null">
+        passing=#{passing},
+      </if>
+      <if test="loanMonthMin != null">
+        loan_month_min=#{loanMonthMin},
+      </if>
+      <if test="loanMonthMax != null">
+        loan_month_max=#{loanMonthMax},
+      </if>
+      <if test="creditTest != null">
+        credit_test=#{creditTest},
+      </if>
+      <if test="youLike != null">
+        you_like=#{youLike},
+      </if>
+      <if test="newLoan != null">
+        new_loan=#{newLoan},
+      </if>
+      <if test="todayAdopt != null">
+        today_adopt=#{todayAdopt},
+      </if>
     </trim>
   </insert>
 

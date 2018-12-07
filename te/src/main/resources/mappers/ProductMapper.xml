@@ -32,6 +32,13 @@
     <result column="manage_url" jdbcType="VARCHAR" property="manageUrl" />
   </resultMap>
 
+  <sql id="table_name">product</sql>
+
+  <sql id="column_list">
+    id,name,logo,min_position,max_position,loan_time_limit,label_txt,label_under,add_time,rate,extension_url,remark,customer_phone,is_jump,
+    is_enable,orders,win_type,float_status,ext1,ext2,is_enable_today,today_orders,is_enable_hot,hot_orders,details,price,pay_method,manage_url
+  </sql>
+
   <select id="count" resultType="java.lang.Integer">
     select count(1) from product p left JOIN product_extend pc ON p.id=pc.id WHERE 1=1
     <if test="bean.isEnable!=null and bean.isEnable!=''">
@@ -157,5 +164,272 @@
     select * from product order by orders
   </select>
 
+  <insert id="insert">
+    insert into <include refid="table_name"/>
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="minPosition != null" >
+        min_position,
+      </if>
+      <if test="maxPosition != null" >
+        max_position,
+      </if>
+      <if test="loanTimeLimit != null" >
+        loan_time_limit,
+      </if>
+      <if test="labelTxt != null" >
+        label_txt,
+      </if>
+      <if test="labelUnder != null" >
+        label_under,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="extensionUrl != null" >
+        extension_url,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="customerPhone != null" >
+        customer_phone,
+      </if>
+      <if test="isJump != null" >
+        is_jump,
+      </if>
+      <if test="isEnable != null" >
+        is_enable,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+      <if test="winType != null" >
+        win_type,
+      </if>
+      <if test="floatStatus != null" >
+        float_status,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+      <if test="isEnableToday != null" >
+        is_enable_today,
+      </if>
+      <if test="todayOrders != null" >
+        today_orders,
+      </if>
+      <if test="isEnableHot != null" >
+        is_enable_hot,
+      </if>
+      <if test="hotOrders != null" >
+        hot_orders,
+      </if>
+      <if test="details != null" >
+        details,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="payMethod != null" >
+        pay_method,
+      </if>
+      <if test="manageUrl != null" >
+        manage_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null " >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null " >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="minPosition != null " >
+        #{minPosition,jdbcType=DECIMAL},
+      </if>
+      <if test="maxPosition != null " >
+        #{maxPosition,jdbcType=DECIMAL},
+      </if>
+      <if test="loanTimeLimit != null " >
+        #{loanTimeLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="labelTxt != null " >
+        #{labelTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="labelUnder != null " >
+        #{labelUnder,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null " >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rate != null " >
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionUrl != null " >
+        #{extensionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null " >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPhone != null " >
+        #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isJump != null " >
+        #{isJump,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null " >
+        #{isEnable,jdbcType=DECIMAL},
+      </if>
+      <if test="orders != null " >
+        #{orders,jdbcType=DECIMAL},
+      </if>
+      <if test="winType != null " >
+        #{winType,jdbcType=VARCHAR},
+      </if>
+      <if test="floatStatus != null " >
+        #{floatStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="ext1 != null " >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null " >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnableToday != null " >
+        #{isEnableToday,jdbcType=DECIMAL},
+      </if>
+      <if test="todayOrders != null " >
+        #{todayOrders,jdbcType=DECIMAL},
+      </if>
+      <if test="isEnableHot != null " >
+        #{isEnableHot,jdbcType=DECIMAL},
+      </if>
+      <if test="hotOrders != null " >
+        #{hotOrders,jdbcType=DECIMAL},
+      </if>
+      <if test="details != null " >
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null " >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null " >
+        #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="manageUrl != null " >
+        #{manageUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="update">
+    update <include refid="table_name"/> set
+    <trim suffixOverrides="," >
+      <if test="name!=null">
+        name=#{name},
+      </if>
+      <if test="logo != null " >
+        logo=#{logo},
+      </if>
+      <if test="minPosition != null " >
+        min_position=#{minPosition},
+      </if>
+      <if test="maxPosition != null " >
+        max_position=#{maxPosition},
+      </if>
+      <if test="loanTimeLimit != null " >
+        loan_time_limit=#{loanTimeLimit},
+      </if>
+      <if test="labelTxt != null " >
+        label_txt=#{labelTxt},
+      </if>
+      <if test="labelUnder != null " >
+        label_under=#{labelUnder},
+      </if>
+      <if test="addTime != null " >
+        add_time=#{addTime},
+      </if>
+      <if test="rate != null " >
+        rate=#{rate},
+      </if>
+      <if test="extensionUrl != null " >
+        extension_url=#{extensionUrl},
+      </if>
+      <if test="remark != null " >
+        remark=#{remark},
+      </if>
+      <if test="customerPhone != null " >
+        customer_phone=#{customerPhone},
+      </if>
+      <if test="isJump != null " >
+        is_jump=#{isJump},
+      </if>
+      <if test="isEnable != null " >
+        is_enable=#{isEnable},
+      </if>
+      <if test="orders != null " >
+        orders=#{orders},
+      </if>
+      <if test="winType != null " >
+        win_type=#{winType},
+      </if>
+      <if test="floatStatus != null " >
+        float_status=#{floatStatus},
+      </if>
+      <if test="ext1 != null " >
+        ext1=#{ext1},
+      </if>
+      <if test="ext2 != null " >
+        ext2=#{ext2},
+      </if>
+      <if test="isEnableToday != null " >
+        is_enable_today=#{isEnableToday},
+      </if>
+      <if test="todayOrders != null " >
+        today_orders=#{todayOrders},
+      </if>
+      <if test="isEnableHot != null " >
+        is_enable_hot=#{isEnableHot},
+      </if>
+      <if test="hotOrders != null " >
+        hot_orders=#{hotOrders},
+      </if>
+      <if test="details != null " >
+        details=#{details},
+      </if>
+      <if test="price != null " >
+        price=#{price},
+      </if>
+      <if test="payMethod != null " >
+        pay_method=#{payMethod},
+      </if>
+      <if test="manageUrl != null " >
+        manage_url=#{manageUrl},
+      </if>
+    </trim>
+    where id=#{id}
+  </update>
+
+  <select id="get" resultMap="BaseResultMap">
+    select * from <include refid="table_name"/> where id=#{id}
+  </select>
 
 </mapper>

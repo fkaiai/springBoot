@@ -1,7 +1,9 @@
 package cn.fk.te.product.controller;
 
+import cn.fk.common.model.vo.DataBox;
 import cn.fk.common.model.vo.Page;
 import cn.fk.common.util.StringUtil;
+import cn.fk.te.product.model.Constant;
 import cn.fk.te.product.model.po.Product;
 import cn.fk.te.product.model.po.ProductExtend;
 import cn.fk.te.product.service.impl.ProductServiceImpl;
@@ -17,16 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/product")
-@Api(value = "产品列表", tags = "product")
+@Api(value = "产品列表", tags = "产品列表")
 @Slf4j
 public class ProductController {
-
     //Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     ProductServiceImpl productService;
-
-
 
     @GetMapping(value = "/getPageList")
     @ApiOperation(value = "按条件获取产品列表",notes = "分页参数(pageNum,pageSize)")
@@ -79,8 +78,15 @@ public class ProductController {
             if(order.equals("hot_orders")) productExtend.setIsEnableHot("1");
         }
 
-        Page<Long,Product> list=  productService.getPageList(productExtend,pageNum,pageSize,sort,order);
+        Page<Integer,Product> list=  productService.getPageList(productExtend,pageNum,pageSize,sort,order);
         return list;
+    }
+
+    @GetMapping(value = "/get")
+    @ApiOperation(value = "按条件获取产品列表",notes = "")
+    @ApiImplicitParams({@ApiImplicitParam(name="id",value="id",dataType="string",required=true,defaultValue="1", paramType = "query")})
+    public DataBox get(String id){
+        return DataBox.newInstance(Constant.SUCCESS,Constant.MSG_SUCCESS,productService.get(Integer.valueOf(id)));
     }
 
 

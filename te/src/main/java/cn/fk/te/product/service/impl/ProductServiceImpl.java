@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @author gyl
  */
 @Service
-public class ProductServiceImpl extends AbstractBaseCRUDService<Long, Product, ProductMapper> implements ProductService {
+public class ProductServiceImpl extends AbstractBaseCRUDService<Integer, Product, ProductMapper> implements ProductService {
 
     @Autowired
     ProductMapper productMapper;

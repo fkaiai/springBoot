@@ -7,12 +7,12 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Product implements BaseModel<Long> {
+public class Product implements BaseModel<Integer> {
     //1
     //2
     //5
 
-    private Long id;
+    private Integer id;
 
     private String name;
 
